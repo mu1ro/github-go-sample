@@ -1,27 +1,26 @@
 language: go
 sudo: false
 go:
-  - "1.8"
-  - "1.9"
-  - "1.10.x"
-
+- '1.8'
+- '1.9'
+- '1.10.x'
 install:
-  - go get golang.org/x/tools/cmd/cover
-  - go get github.com/modocache/gover
-  - go get github.com/mattn/goveralls
-  - go get honnef.co/go/tools/cmd/gosimple
-  - go get honnef.co/go/tools/cmd/unused
-  - go get honnef.co/go/tools/cmd/staticcheck
-  - go get -v -t ./...
-
+- go get golang.org/x/tools/cmd/cover
+- go get github.com/modocache/gover
+- go get github.com/mattn/goveralls
+- go get honnef.co/go/tools/cmd/gosimple
+- go get honnef.co/go/tools/cmd/unused
+- go get honnef.co/go/tools/cmd/staticcheck
+- go get -v -t ./...
 script:
-  - go vet $(go list ./... | grep -v /vendor/)
-  - unused $(go list ./... | grep -v /vendor/)
-  - gosimple $(go list ./... | grep -v /vendor/)
-  - staticcheck $(go list ./... | grep -v /vendor/)
-  - go test -cover -coverpkg github.com/mu1ro/github-go-sample -coverprofile go-ffprobe.coverprofile
-
+- go vet $(go list ./... | grep -v /vendor/)
+- unused $(go list ./... | grep -v /vendor/)
+- gosimple $(go list ./... | grep -v /vendor/)
+- staticcheck $(go list ./... | grep -v /vendor/)
+- go test -cover -coverpkg github.com/mu1ro/github-go-sample -coverprofile go-ffprobe.coverprofile
 after_script:
-  - gover
-  - goveralls -coverprofile=gover.coverprofile -repotoken $COVERALLS_TOKEN
-
+- gover
+- goveralls -coverprofile=gover.coverprofile -repotoken $COVERALLS_TOKEN
+env:
+  global:
+    secure: sepjRwU7hSOayqYoaQ/4rv/5NK/6CHBDPrXnrToTuczRLqe3FlHGPghwv8eptm7TAmuMHJir2EKDV0dCgN9RH/QIVPu9WmHC1hzz3U4RB8J20dx1RKK12es7uRCpgFaN/mtyU1eurCLHJy1EFQm3wN2FbXtRncDI8P4cqx4d/visd7SgN5DiPD5SiqFFVyn9z4dH6F192TScckseYD3pKeaJ5yKUVBwmXv6s2Olu96pa+eUntfdxZJYWRlF3nUcZAJBtFJAFVQ77aUYpraa0Of7XzuQQ5tW/lSU5TwliPfuQ9w9fZJlsqf/w1Oh1xzxay3GVelvOsCcEjO6vvtN0mu46UVxtCifwH6GMjOrFk/hy/o12ugvQssfgpYCKnXLm64LaYXZwdQrf8BeEasmhZ2uH1CKLapynKxiJHR9UICZgF4lh4zHM2o699x2Jvrd4LfLyXcvjJG3H1O2Z/IC7Eh/MWYsrmbJDlFdgcOs+LfoWxEyszAtBfTMqLyTzrzfK/Xi36jH5mxnZ5DoTU1LASYhO9yXddFVfip0F7eGTL5ybNby76cBPZ8sj4nWFJ4qJud0WY9K82tHueZsE9mz2JG5GL6c4GiTC72/kFImESMpdJIywFlBCgh+cmzGQc9vHnSlx60yYElvld9XsZyHY5c58Miqtgs3B/SGWOAUir70=
