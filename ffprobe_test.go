@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	ffprobe "github.com/mu1ro/github-go"
+	ffprobe "github.com/mu1ro/github-go-sample"
 )
 
 // jsonStr is sample exec ffprobe result.
